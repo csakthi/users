@@ -50,20 +50,10 @@ module.exports = function(grunt) {
             },
             test: {
                 options: {
-                    debug: false,
-                    // keepalive:true,
-                    middleware: function(connect) {
-                        return[
-                            modRewrite([
-                                '^/api/(.*)$ http://localhost:9999/$1 [P]'
-                                ,'!\\.html|\\.hbs|\\.js|\\.css|\\.scss|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff$ /index.html'
-                            ]),
-                            mountFolder(connect, './dist/')
-                        ];
-                    }
+                    debug: false
                 }
             }
-        },
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -76,4 +66,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
+    grunt.registerTask('serve', function(){
+        grunt.task.run([ 'connect:test', 'watch']);
+    });
 };
