@@ -42,7 +42,28 @@ module.exports = function(grunt) {
         watch: {
             files: ['<%= jshint.files %>'],
             tasks: ['jshint', 'qunit']
-        }
+        },
+        connect: {
+            options: {
+                port: 8080,
+                hostname: 'localhost'
+            },
+            test: {
+                options: {
+                    debug: false,
+                    // keepalive:true,
+                    middleware: function(connect) {
+                        return[
+                            modRewrite([
+                                '^/api/(.*)$ http://localhost:9999/$1 [P]'
+                                ,'!\\.html|\\.hbs|\\.js|\\.css|\\.scss|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.svg|\\.eot|\\.ttf|\\.woff$ /index.html'
+                            ]),
+                            mountFolder(connect, './dist/')
+                        ];
+                    }
+                }
+            }
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -50,7 +71,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
-
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.registerTask('test', ['jshint', 'qunit']);
 
     grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
