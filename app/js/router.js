@@ -49,6 +49,7 @@ define([
         <!-- activated for home (index.html) in the URL -->
         router.on('route:home', function () {
             console.log("hey! home page");
+            console.log(UserListView);
             UserListView.render();
         });
 
