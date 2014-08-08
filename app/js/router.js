@@ -8,8 +8,8 @@ define([
     'underscore',
     'backbone',
     'views/EditUserView',
-    'views/ListUserView'
-], function ($, _, Backbone, EditUserView, ListUserView) {
+    'views/UserListView'
+], function ($, _, Backbone, EditUserView, UserListView) {
 
     var Router = Backbone.Router.extend({
         routes: {
@@ -49,7 +49,7 @@ define([
         <!-- activated for home (index.html) in the URL -->
         router.on('route:home', function () {
             console.log("hey! home page");
-            ListUserView.render();
+            UserListView.render();
         });
 
         <!-- activated for url "#/new" in the URL -->
