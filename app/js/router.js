@@ -42,9 +42,6 @@ define([
         return o;
     };
 
-    <!-- Backbone starts remembering the history-->
-    Backbone.history.start();
-
     var initialize = function () {
 
         var router = new Router();
@@ -52,7 +49,7 @@ define([
         <!-- activated for home (index.html) in the URL -->
         router.on('route:home', function () {
             console.log("hey! home page");
-            userListView.render();
+            ListUserView.render();
         });
 
         <!-- activated for url "#/new" in the URL -->
@@ -65,7 +62,6 @@ define([
         });
 
         Backbone.history.start();
-
     };
     return {
         initialize: initialize
