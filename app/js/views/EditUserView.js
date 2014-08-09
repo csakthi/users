@@ -6,9 +6,10 @@ define([
     'underscore',
     'backbone',
     'models/User',
+    'router',
     'text!templates/EditUserTemplate.html'
-], function ($, _, Backbone, editUserTemplate) {
-
+], function ($, _, Backbone, User, Router, EditUserTemplate) {
+    var router = new Router();
     var EditUserView = Backbone.View.extend({
         el: '.page',
         render: function (options) {
@@ -21,13 +22,13 @@ define([
                     success: function (user) {
                         console.log("Received user object from server id=" + user['id']);
                         console.log("Received user object from server id=" + user.get('firstname'));
-                        var template = _.template($('#edit-user-template').html(), {user: user});
+                        var template = _.template(EditUserTemplate, {user: user});
                         that.$el.html(template);
                     }
-                })
+                });
             }
             else {
-                var template = _.template($('#edit-user-template').html(), {user: null});
+                var template = _.template(EditUserTemplate, {user: null});
                 this.$el.html(template);
             }
         },

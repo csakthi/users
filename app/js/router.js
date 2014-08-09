@@ -43,14 +43,13 @@ define([
     };
 
     var initialize = function () {
-
         var router = new Router();
-
         <!-- activated for home (index.html) in the URL -->
         router.on('route:home', function () {
             console.log("hey! home page");
             console.log(UserListView);
-            UserListView.render();
+            var userListView = new UserListView();
+            userListView.render();
         });
 
         <!-- activated for url "#/new" in the URL -->
@@ -59,6 +58,7 @@ define([
         router.on('route:editUser', function (id) {
             <!-- renders the edit user form-->
             console.log("hey! edit user form");
+            var editUserView = new EditUserView();
             editUserView.render({id: id});
         });
 

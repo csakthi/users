@@ -6,9 +6,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'models/Users',
+    'collections/Users',
     'text!templates/UserListTemplate.html'
-], function ($, _, Backbone, Users, userListTemplate) {
+], function ($, _, Backbone, Users, UserListTemplate) {
 
     var UserListView = Backbone.View.extend({
         el: '.page',
@@ -18,7 +18,7 @@ define([
             users.fetch({
                 /*how functions can take empty / users objects*/
                 success: function (users) {
-                    var template = _.template(userListTemplate, {users: users.models});
+                    var template = _.template(UserListTemplate, {users: users.models});
                     that.$el.html(template);
                 }
             })
