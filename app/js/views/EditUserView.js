@@ -9,7 +9,6 @@ define([
     'router',
     'text!templates/EditUserTemplate.html'
 ], function ($, _, Backbone, User, Router, EditUserTemplate) {
-    var router = new Router();
     var EditUserView = Backbone.View.extend({
         el: '.page',
         render: function (options) {
@@ -50,7 +49,7 @@ define([
                     console.log(user.toJSON());
                     <!-- navigate to home page -->
                     <!-- navigate saves the state only, trigger to explicitly navigate -->
-                    router.navigate('', {trigger: true});
+                    Router.navigate('', {trigger: true});
                 }
             });
             <!-- return false to stop the browsers default behaviour -->
@@ -62,7 +61,7 @@ define([
             <!-- TODO how this user object available in this function -->
             this.user.destroy({
                 success: function () {
-                    router.navigate('', {trigger: true});
+                    Router.navigate('', {trigger: true});
                 }
             });
             <!-- return false to stop the browsers default behaviour -->
