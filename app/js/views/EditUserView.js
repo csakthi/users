@@ -32,8 +32,8 @@ define([
         },
         //handles form submission through events , calls the saveUser function below
         events: {
-            /*submit is the event, edit-user-form is the form
-            TODO why submit.edit-user-form without space after submit did not work?*/
+            /* submit is the event, edit-user-form is the form
+            TODO why submit.edit-user-form without space after submit did not work? */
             'submit .edit-user-form': 'saveUser',
             'click .delete': 'deleteUser'
         },
@@ -58,6 +58,7 @@ define([
         //DELETE Request
         deleteUser: function (ev) {
             //TODO how this user object available in this function
+            console.log('DELETE:this.user=' + this.user);
             this.user.destroy({
                 success: function () {
                     Router.navigate('', {trigger: true});
