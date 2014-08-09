@@ -40,7 +40,7 @@ define([
         //POST the userDetails objects to the server
         saveUser: function (ev) {
             var userDetails = $(ev.currentTarget).serializeObject();
-            console.log(userDetails);
+            console.log('Saving use: ', userDetails);
             var user = new User();
             //backbone knows to automatically POST to /users url to save
             user.save(userDetails, {
@@ -58,7 +58,7 @@ define([
         //DELETE Request
         deleteUser: function (ev) {
             //TODO how this user object available in this function
-            console.log('DELETE:this.user=' + this.user);
+            console.log('DELETE:this.user=', this.user);
             this.user.destroy({
                 success: function () {
                     Router.navigate('', {trigger: true});

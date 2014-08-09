@@ -16,10 +16,12 @@ define([
         var router = new Router();
         window.Router = router;
         // activated for home (index.html) in the URL
+        var userListView = new UserListView();
+        var editUserView = new EditUserView();
+
         router.on('route:home', function () {
             console.log("hey! home page");
             console.log(UserListView);
-            var userListView = new UserListView();
             userListView.render();
         });
 
@@ -29,7 +31,6 @@ define([
         router.on('route:editUser', function (id) {
             // renders the edit user form
             console.log("hey! edit user form");
-            var editUserView = new EditUserView();
             editUserView.render({id: id});
         });
     }
