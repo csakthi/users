@@ -42,6 +42,5 @@ define([
         return o;
     };
 
-    Backbone.history.start();
     return Router;
 });
