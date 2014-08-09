@@ -6,9 +6,8 @@ define([
     'underscore',
     'backbone',
     'models/User',
-    'router',
     'text!templates/EditUserTemplate.html'
-], function ($, _, Backbone, User, Router, EditUserTemplate) {
+], function ($, _, Backbone, User, EditUserTemplate) {
     var EditUserView = Backbone.View.extend({
         el: '.page',
         render: function (options) {
@@ -31,40 +30,40 @@ define([
                 this.$el.html(template);
             }
         },
-        <!-- handles form submission through events , calls the saveUser function below -->
+        //handles form submission through events , calls the saveUser function below
         events: {
-            <!-- submit is the event, edit-user-form is the form -->
-            <!-- TODO why submit.edit-user-form without space after submit did not work? -->
+            /*submit is the event, edit-user-form is the form
+            TODO why submit.edit-user-form without space after submit did not work?*/
             'submit .edit-user-form': 'saveUser',
             'click .delete': 'deleteUser'
         },
-        <!-- POST the userDetails objects to the server -->
+        //POST the userDetails objects to the server
         saveUser: function (ev) {
             var userDetails = $(ev.currentTarget).serializeObject();
             console.log(userDetails);
             var user = new User();
-            <!-- backbone knows to automatically POST to /users url to save -->
+            //backbone knows to automatically POST to /users url to save
             user.save(userDetails, {
                 success: function (user) {
                     console.log(user.toJSON());
-                    <!-- navigate to home page -->
-                    <!-- navigate saves the state only, trigger to explicitly navigate -->
+                    //navigate to home page
+                    //navigate saves the state only, trigger to explicitly navigate
                     Router.navigate('', {trigger: true});
                 }
             });
-            <!-- return false to stop the browsers default behaviour -->
+            //return false to stop the browsers default behaviour
             return false;
         },
 
-        <!-- DELETE Request -->
+        //DELETE Request
         deleteUser: function (ev) {
-            <!-- TODO how this user object available in this function -->
+            //TODO how this user object available in this function
             this.user.destroy({
                 success: function () {
                     Router.navigate('', {trigger: true});
                 }
             });
-            <!-- return false to stop the browsers default behaviour -->
+            //return false to stop the browsers default behaviour
             return false;
         }
     });

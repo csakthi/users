@@ -19,13 +19,13 @@ define([
         }
     });
 
-    <!-- to help calling the endpoint in other server than originating server -->
-    <!-- if your end point is in the same server, you do not need it -->
+    /* to help calling the endpoint in other server than originating server
+    if your end point is in the same server, you do not need it */
     $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
         options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
     });
 
-    <!-- this is serialize form data -->
+    //this is serialize form data
     $.fn.serializeObject = function () {
         var o = {};
         var a = this.serializeArray();
