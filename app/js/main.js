@@ -1,5 +1,5 @@
 require.config({
-    urlArgs: "bust=" + (new Date()).getTime(),
+    //urlArgs: "bust=" + (new Date()).getTime(),
     //baseUrl: "./",
     waitSeconds: 200,
     //enforceDefine: true,
